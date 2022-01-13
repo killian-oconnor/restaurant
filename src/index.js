@@ -68,6 +68,7 @@ const MenuTabModule = (() => {
         }
     }
 
+    // function to calculate pizza price
     function calculatePrice(MenuItem) {
 
         let basePrice = 10;
@@ -80,6 +81,7 @@ const MenuTabModule = (() => {
         return totalPrice;
     }
 
+    // function to create a HTML card element from a menu item
     function createMenuItemHTML(MenuItem) {
         let cardholder = document.createElement('div');
         cardholder.classList.add("sm:w-1/4","p-2");
@@ -112,6 +114,7 @@ const MenuTabModule = (() => {
         return cardholder;
     }
 
+    // function to remove existing page opened and render menu items 
     function renderMenu(){
 
         homeButton.classList = unselectedTabClasses.join(" ");
@@ -131,13 +134,9 @@ const MenuTabModule = (() => {
         });
     }
 
+    // function to generate an HTML menu object. Additional menu items should be created within this function
     function generateHTMLmenu() {
         let HTMLmenu = [];
-
-        // const margheritaHTML = new MenuItem("Margherita", ["Mozzarella", "Tomato Sauce", "Basil"], margheritaPic).createMenuItemHTML();
-        // const pepperoniHTML = new MenuItem("Pepperoni", ["Mozzarella", "Tomato Sauce", "Pepperoni Slices"], pepperoniPic).createMenuItemHTML();
-        // const veggieiHTML = new MenuItem("Veggie Supreme", ["Mozzarella", "Tomato Sauce", "Peppers", "Onions", "Sweetcorn"], veggiePic).createMenuItemHTML();
-        // const bbqChickenHTML = new MenuItem("BBQ Chicken", ["Mozzarella", "BBQ Sauce", "Chicken Pieces"], bbqchickenPic).createMenuItemHTML();
 
         const margheritaHTML = createMenuItemHTML(new MenuItem("Margherita", ["Mozzarella", "Tomato Sauce", "Basil"], margheritaPic));
         const pepperoniHTML = createMenuItemHTML(new MenuItem("Pepperoni", ["Mozzarella", "Tomato Sauce", "Pepperoni Slices"], pepperoniPic));
@@ -148,10 +147,18 @@ const MenuTabModule = (() => {
 
         return HTMLmenu;
     }
+
+    function addMenuItem(title, ingredients, image) {
+
+        const newMenuItemHTML = createMenuItemHTML(new MenuItem(title, ingredients, image));
+        HTMLmenu.push(newMenuItemHTML);
+
+    }
     
     return {
         calculatePrice,
-        renderMenu
+        renderMenu,
+        addMenuItem
     };
 })();
 
